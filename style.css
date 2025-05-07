@@ -1,0 +1,161 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+  }
+  
+  /* PDF Content Wrapper */
+  #pdf-content {
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid #ccc;  /* Simple border for the whole form */
+  }
+  
+  /* Form59 Header Styling */
+  #form59 h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Section Styling */
+  .section {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;  /* Simple solid border for each section */
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  /* Pollution Under Control Certificate Styling */
+  #form59 .section h1 {
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: left;
+  }
+  
+  #form59 .section h2 {
+    font-weight: normal;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 5px;
+  }
+  
+  /* Label and Value Alignment */
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  
+  .label {
+    width: 40%;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .value {
+    width: 55%;
+  }
+  
+  .value input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;  /* Simple border for input fields */
+    background-color: transparent;
+    text-align: center;
+  }
+  
+  .value input[type="text"], .value input[type="date"], .value input[type="month"], .value input[type="tel"], .value input[type="number"] {
+    border-radius: 0;
+    font-size: 14px;
+  }
+  
+  /* Vehicle Photo Section */
+  #form59 .section h3 {
+    text-align: left;
+    font-size: 16px;
+    font-weight: normal;
+  }
+  
+  #form59 .section div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #form59 .section #camera {
+    width: 300px;
+    height: 200px;
+    border: 1px solid #ccc;  /* Simple border for camera area */
+  }
+  
+  #form59 .section #capturedImage {
+    width: 300px;
+    height: 200px;
+    border: 1px solid #ccc;  /* Simple border for captured image */
+  }
+  
+  /* PUC Certificate Table */
+  .puc-certificate table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .puc-certificate th, .puc-certificate td {
+    padding: 10px;
+    border: 1px solid #ccc;  /* Simple border for table cells */
+    text-align: left;
+  }
+  
+  .puc-certificate th {
+    background-color: #f2f2f2;
+  }
+  
+  .puc-certificate td input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+  }
+  
+  /* PUC Certificate Notes */
+  .note {
+    font-size: 14px;
+    margin-top: 15px;
+    font-weight: normal;
+  }
+  
+  /* Footer Section */
+  .footer {
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+  }
+  
+  /* Button Styling */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  

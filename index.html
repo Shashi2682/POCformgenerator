@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form 59</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .section { margin-bottom: 20px; }
+    .row { display: flex; margin-bottom: 10px; }
+    .label { width: 200px; font-weight: bold; }
+    .value input { width: 200px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    table, th, td { border: 1px solid black; padding: 8px; text-align: center; }
+    .note, .footer { margin-top: 20px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div id="pdf-content">
+    <div id="form59">
+      <h1>Form 59</h1>
+      <div class="section">
+        <div class="row"><div class="label">Date:</div><div class="value" id="current-date"></div></div>
+        <div class="row"><div class="label">Time:</div><div class="value" id="current-time"></div></div>
+        <div class="row"><div class="label">Validity Upto:</div><div class="value" id="validity-date"></div></div>
+      </div>
+
+      <div class="section">
+        <h1>Pollution under Control Certificate</h1>
+        <h2>Authorised by:</h2>
+        <h2>Government OF Chattisgrah:</h2>
+      </div>
+
+      <div class="section">
+        <div class="row"><div class="label">Certificate No:</div><div class="value"><input type="text"></div></div>
+        <div class="row"><div class="label">Registration Number:</div><div class="value"><input type="text"></div></div>
+        <div class="row"><div class="label">Date of Registration:</div><div class="value"><input type="date"></div></div>
+        <div class="row"><div class="label">Month & Year of Mfg:</div><div class="value"><input type="month"></div></div>
+        <div class="row"><div class="label">Valid Mobile Number:</div><div class="value"><input type="tel" pattern="[0-9]{10}"></div></div>
+        <div class="row"><div class="label">Emission Norms:</div><div class="value"><input type="text"></div></div>
+        <div class="row"><div class="label">Fuel:</div><div class="value"><input type="text"></div></div>
+        <div class="row"><div class="label">PUC Code:</div><div class="value"><input type="text"></div></div>
+        <div class="row"><div class="label">GST IN:</div><div class="value"><input type="text"></div></div>
+        <div class="row"><div class="label">Fees:</div><div class="value"><input type="number"></div></div>
+        <div class="row"><div class="label">MIL Observation:</div><div class="value"><input type="text"></div></div>
+      </div>
+
+      <div class="section">
+        <h3>Vehicle Photo with Registration Plate</h3>
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div>
+            <video id="camera" autoplay style="display:none; width: 300px; height: 200px; border: 1px solid #ccc;"></video><br>
+            <button onclick="startCamera()">Capture Photo</button><br>
+            <canvas id="photoCanvas" width="300" height="200" style="display:none;"></canvas>
+          </div>
+          <div>
+            <img id="capturedImage" alt="Captured Image" style="width: 300px; height: 200px; border: 1px solid #ccc;" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="puc-certificate">
+      <table>
+        <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Pollutant</th>
+            <th>Units</th>
+            <th>Emission limits</th>
+            <th>Measured Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2">Idling Emissions</td>
+            <td>Carbon Monoxide (CO)</td>
+            <td>%</td>
+            <td><input type="text" value="0.5"></td>
+            <td><input type="text" value="0.2"></td>
+          </tr>
+          <tr>
+            <td>Hydrocarbon (HC)</td>
+            <td>ppm</td>
+            <td><input type="text" value="750.0"></td>
+            <td><input type="text" value="177.0"></td>
+          </tr>
+          <tr>
+            <td rowspan="3">High idling</td>
+            <td>CO</td>
+            <td>%</td>
+            <td><input type="text" value="0.0"></td>
+            <td><input type="text" value="0.0"></td>
+          </tr>
+          <tr>
+            <td>RPM</td>
+            <td>RPM</td>
+            <td><input type="text" value="2500 ± 200"></td>
+            <td><input type="text" value="0.0"></td>
+          </tr>
+          <tr>
+            <td>Lambda</td>
+            <td>-</td>
+            <td><input type="text" value="1 ± 0.03"></td>
+            <td><input type="text" value="0.0"></td>
+          </tr>
+          <tr>
+            <td>Smoke Density</td>
+            <td>Light absorption</td>
+            <td>1/m</td>
+            <td colspan="2"><input type="text" value=""></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      This PUC certificate is system generated and does not require any signature.
+    </div>
+
+    <div class="note">
+      Note: Vehicle owners should link their mobile number at <a href="https://puc.parivahan.gov.in">puc.parivahan.gov.in</a>
+    </div>
+
+    <div class="footer">
+      Authorised Signature with stamp of PUC Operator<br>
+      60mm x 20 mm
+    </div>
+  </div>
+
+  <button onclick="downloadPDF()">Download as PDF</button>
+
+  <script>
+    // Date Setup
+    const now = new Date();
+    document.getElementById("current-date").textContent = now.toLocaleDateString();
+    document.getElementById("current-time").textContent = now.toLocaleTimeString();
+    const validDate = new Date();
+    validDate.setMonth(validDate.getMonth() + 6);
+    document.getElementById("validity-date").textContent = validDate.toLocaleDateString();
+
+    // Camera Setup
+    let stream = null;
+
+    async function startCamera() {
+      const video = document.getElementById('camera');
+      video.style.display = 'block';
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+        setTimeout(() => {
+          capturePhoto();
+        }, 2000);
+      } catch (e) {
+        alert("Camera not accessible.");
+      }
+    }
+
+    function capturePhoto() {
+      const video = document.getElementById('camera');
+      const canvas = document.getElementById('photoCanvas');
+      const context = canvas.getContext('2d');
+      canvas.style.display = 'block';
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      setTimeout(() => {
+        const imageData = canvas.toDataURL('image/png');
+        document.getElementById('capturedImage').src = imageData;
+        video.style.display = 'none';
+        if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+          stream = null;
+        }
+      }, 100);
+    }
+
+    // PDF Export
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF('p', 'pt', 'a4');
+      const content = document.getElementById("pdf-content");
+      const canvas = await html2canvas(content, { scale: 2 });
+      const imgData = canvas.toDataURL('image/png');
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      let position = 0;
+      let heightLeft = pdfHeight;
+
+      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+      heightLeft -= pdf.internal.pageSize.getHeight();
+
+      while (heightLeft > 0) {
+        position = heightLeft - pdfHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+        heightLeft -= pdf.internal.pageSize.getHeight();
+      }
+
+      pdf.save("Form59_PUC_Certificate.pdf");
+    }
+  </script>
+</body>
+</html>
