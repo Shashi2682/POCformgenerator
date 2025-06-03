@@ -18,7 +18,7 @@
   </style>
 </head>
 <body>
-  <h1>I have made change here</h1>
+  <h1>Pollution Control Certificate Form</h1>
   <div id="pdf-content">
     <div id="form59">
       <h1>Form 59</h1>
@@ -31,21 +31,21 @@
       <div class="section">
         <h1>Pollution under Control Certificate</h1>
         <h2>Authorised by:</h2>
-        <h2>Government OF Chattisgrah:</h2>
+        <h2>Government of Chhattisgarh</h2>
       </div>
 
       <div class="section">
-        <div class="row"><div class="label">Certificate No:</div><div class="value"><input type="text"></div></div>
-        <div class="row"><div class="label">Registration Number:</div><div class="value"><input type="text"></div></div>
-        <div class="row"><div class="label">Date of Registration:</div><div class="value"><input type="date"></div></div>
-        <div class="row"><div class="label">Month & Year of Mfg:</div><div class="value"><input type="month"></div></div>
-        <div class="row"><div class="label">Valid Mobile Number:</div><div class="value"><input type="tel" pattern="[0-9]{10}"></div></div>
-        <div class="row"><div class="label">Emission Norms:</div><div class="value"><input type="text"></div></div>
-        <div class="row"><div class="label">Fuel:</div><div class="value"><input type="text"></div></div>
-        <div class="row"><div class="label">PUC Code:</div><div class="value"><input type="text"></div></div>
-        <div class="row"><div class="label">GST IN:</div><div class="value"><input type="text"></div></div>
-        <div class="row"><div class="label">Fees:</div><div class="value"><input type="number"></div></div>
-        <div class="row"><div class="label">MIL Observation:</div><div class="value"><input type="text"></div></div>
+        <div class="row"><div class="label">Certificate No:</div><div class="value"><input type="text" id="certificate-no"></div></div>
+        <div class="row"><div class="label">Registration Number:</div><div class="value"><input type="text" id="registration-no"></div></div>
+        <div class="row"><div class="label">Date of Registration:</div><div class="value"><input type="date" id="registration-date"></div></div>
+        <div class="row"><div class="label">Month & Year of Mfg:</div><div class="value"><input type="month" id="mfg-date"></div></div>
+        <div class="row"><div class="label">Valid Mobile Number:</div><div class="value"><input type="tel" id="mobile-number" pattern="[0-9]{10}"></div></div>
+        <div class="row"><div class="label">Emission Norms:</div><div class="value"><input type="text" id="emission-norms"></div></div>
+        <div class="row"><div class="label">Fuel:</div><div class="value"><input type="text" id="fuel"></div></div>
+        <div class="row"><div class="label">PUC Code:</div><div class="value"><input type="text" id="puc-code"></div></div>
+        <div class="row"><div class="label">GST IN:</div><div class="value"><input type="text" id="gst"></div></div>
+        <div class="row"><div class="label">Fees:</div><div class="value"><input type="number" id="fees"></div></div>
+        <div class="row"><div class="label">MIL Observation:</div><div class="value"><input type="text" id="mil-observation"></div></div>
       </div>
 
       <div class="section">
@@ -79,39 +79,39 @@
             <td rowspan="2">Idling Emissions</td>
             <td>Carbon Monoxide (CO)</td>
             <td>%</td>
-            <td><input type="text" value="0.5"></td>
-            <td><input type="text" value="0.2"></td>
+            <td><input type="text" value="0.5" id="co-limit"></td>
+            <td><input type="text" value="0.2" id="co-measured"></td>
           </tr>
           <tr>
             <td>Hydrocarbon (HC)</td>
             <td>ppm</td>
-            <td><input type="text" value="750.0"></td>
-            <td><input type="text" value="177.0"></td>
+            <td><input type="text" value="750.0" id="hc-limit"></td>
+            <td><input type="text" value="177.0" id="hc-measured"></td>
           </tr>
           <tr>
-            <td rowspan="3">High idling</td>
+            <td rowspan="3">High Idling</td>
             <td>CO</td>
             <td>%</td>
-            <td><input type="text" value="0.0"></td>
-            <td><input type="text" value="0.0"></td>
+            <td><input type="text" value="0.0" id="high-idling-co"></td>
+            <td><input type="text" value="0.0" id="high-idling-co-measured"></td>
           </tr>
           <tr>
             <td>RPM</td>
             <td>RPM</td>
-            <td><input type="text" value="2500 ± 200"></td>
-            <td><input type="text" value="0.0"></td>
+            <td><input type="text" value="2500 ± 200" id="rpm-limit"></td>
+            <td><input type="text" value="0.0" id="rpm-measured"></td>
           </tr>
           <tr>
             <td>Lambda</td>
             <td>-</td>
-            <td><input type="text" value="1 ± 0.03"></td>
-            <td><input type="text" value="0.0"></td>
+            <td><input type="text" value="1 ± 0.03" id="lambda-limit"></td>
+            <td><input type="text" value="0.0" id="lambda-measured"></td>
           </tr>
           <tr>
             <td>Smoke Density</td>
             <td>Light absorption</td>
             <td>1/m</td>
-            <td colspan="2"><input type="text" value=""></td>
+            <td colspan="2"><input type="text" id="smoke-density"></td>
           </tr>
         </tbody>
       </table>
@@ -122,7 +122,7 @@
     </div>
 
     <div class="note">
-      Note: Vehicle owners should link their mobile number at <a href="https://puc.parivahan.gov.in">puc.parivahan.gov.in</a>
+      Note: Vehicle owners should link their mobile number at <a href="https://puc.parivahan.gov.in" target="_blank">puc.parivahan.gov.in</a>
     </div>
 
     <div class="footer">
